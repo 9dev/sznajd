@@ -121,7 +121,7 @@ $(function() {
 
     function initChart() {
         DATAPOINTS = [];
-        DATAPOINTS.push({x:0,y:NUM_YES});
+        DATAPOINTS.push({x:0,y:NUM_YES*100/LEN});
 
         CHART = new CanvasJS.Chart("chart",
         {
