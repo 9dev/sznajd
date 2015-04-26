@@ -76,6 +76,7 @@ $(function() {
     function uiDisable(v) {
         $('#break, #people, #probability').prop('readonly', v);
         $('#antagonize, #nothing').prop('disabled', v);
+        $('#preview, #chart, h2').toggle(v);
     }
 
     function disable(name, v) {
