@@ -10,9 +10,13 @@ $(function() {
     var ANTAGONIZE;
     var DELAY;
     var LEN;
+    var NUM_YES;
 
     var PREVIOUS_N1;
     var PREVIOUS_N2;
+
+    var DATAPOINTS = [];
+    var CHART;
 
 // Event handlers
 
@@ -29,6 +33,8 @@ $(function() {
 
         PAUSE = false;
         INTER = setInterval(iterate, DELAY);
+
+        CHART.render();
     });
 
     $('#pause').click(function(){
@@ -84,7 +90,8 @@ $(function() {
     }
 
     function createPopulation() {
-        var num_yes = Math.floor(getProbability() * LEN / 100);
+        NUM_YES = Math.floor(getProbability() * LEN / 100);
+
         var index;
 
         // fill entire population with NO opinions
@@ -94,7 +101,7 @@ $(function() {
         }
 
         // randomly place YES opinions
-        for (var i = 0; i < num_yes; ++i) {
+        for (var i = 0; i < NUM_YES; ++i) {
             index = Math.floor(Math.random()*LEN);
             if ( POPULATION[index] ) --i;
             else POPULATION[index] = true;
@@ -112,9 +119,29 @@ $(function() {
         }
     }
 
+    function initChart() {
+        DATAPOINTS = [];
+        DATAPOINTS.push({x:0,y:NUM_YES});
+
+        CHART = new CanvasJS.Chart("chart",
+        {
+            data: [
+                {
+                    type: "line",
+                    dataPoints: DATAPOINTS
+                }
+            ]
+        });
+    }
+
     function setOpinion(index, value) {
-        POPULATION[index] = value;
-        $('#person' + index).removeClass('yes').removeClass('no').addClass(value ? 'yes' : 'no');
+        if ( POPULATION[index] != value ) {
+            POPULATION[index] = value;
+            $('#person' + index).removeClass('yes').removeClass('no').addClass(value ? 'yes' : 'no');
+
+            if (value) ++NUM_YES;
+            else --NUM_YES;
+        }
     }
 
     function iterate() {
@@ -147,6 +174,9 @@ $(function() {
 
         PREVIOUS_N1 = n1;
         PREVIOUS_N2 = n2;
+
+        DATAPOINTS.push({x:DATAPOINTS.length,y:NUM_YES*100/LEN});
+        CHART.render();
     }
 
 // Init
@@ -163,6 +193,7 @@ $(function() {
 
         createPopulation();
         printPreview();
+        initChart();
     }
 
 });
