@@ -2,7 +2,7 @@ $(function() {
 
 // State variables
 
-    PAUSE = false;
+    var PAUSE = false;
 
 // Event handlers
 
