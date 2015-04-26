@@ -2,7 +2,10 @@ $(function() {
 
 // State variables
 
-    var PAUSE = false;
+    var PAUSE;
+
+    var POPULATION;
+    var LEN;
 
 // Event handlers
 
@@ -69,8 +72,44 @@ $(function() {
         $('#' + name).prop('disabled', v);
     }
 
-// Debug info
+    function createPopulation() {
+        var num_yes = Math.floor(getProbability() * LEN / 100);
+        var index;
 
-    console.log(getMode(), getBreakTime(), getLength());
+        // fill entire population with NO opinions
+        POPULATION = new Array();
+        for (var i = 0; i < LEN; ++i) {
+            POPULATION[i] = false;
+        }
+
+        // randomly place YES opinions
+        for (var i = 0; i < num_yes; ++i) {
+            index = Math.floor(Math.random()*LEN);
+            if ( POPULATION[index] ) --i;
+            else POPULATION[index] = true;
+        }
+    }
+
+    function printPreview() {
+        var $preview = $('#preview');
+        var cls;
+
+        for ( var i = 0; i < LEN; ++i ) {
+            cls = POPULATION[i] ? 'yes' : 'no';
+            $preview.append('<div class="person ' + cls + '"></div>');
+        }
+    }
+
+// Init
+
+    function init() {
+        PAUSE = false;
+        LEN = getLength();
+
+        createPopulation();
+        printPreview();
+    }
+
+    init();
 
 });

@@ -1,2 +1,6 @@
-.yes { color: blue }
-.no { color: red }
+.yes { background-color: blue; color: white }
+.no { background-color: red; color: white }
+
+.person { width: 20px; height: 20px; display: inline-block; border: 1px solid black }
+
+#preview { margin: 0 auto; width: 100% }
