@@ -22,33 +22,35 @@ $(function() {
         disable('pause', false);
         disable('reset', false);
 
-        if (PAUSE) {
-            // resume
-            PAUSE = false;
-        } else {
+        if (!PAUSE) {
             // start from the beginning
             init();
         }
 
+        PAUSE = false;
         INTER = setInterval(iterate, DELAY);
     });
 
     $('#pause').click(function(){
+        window.clearInterval(INTER);
+
         uiDisable(true);
         disable('start', false);
         disable('pause', true);
         disable('reset', false);
 
-        //
+        PAUSE = true;
     });
 
     $('#reset').click(function(){
+        window.clearInterval(INTER);
+
         uiDisable(false);
         disable('start', false);
         disable('pause', true);
         disable('reset', false);
 
-        //
+        PAUSE = false;
     });
 
 // Getters
@@ -149,6 +151,8 @@ $(function() {
 // Init
 
     function init() {
+        window.clearInterval(INTER);
+
         PAUSE = false;
         DELAY = getBreakTime();
         LEN = getLength();
