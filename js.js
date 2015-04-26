@@ -57,7 +57,7 @@ $(function() {
 // Helpers
 
     function uiDisable(v) {
-        $('#break, #people').prop('readonly', v);
+        $('#break, #people, #probability').prop('readonly', v);
         $('#antagonize, #nothing').prop('disabled', v);
     }
 
