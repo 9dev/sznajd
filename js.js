@@ -54,6 +54,10 @@ $(function() {
         return $('#people').val();
     }
 
+    function getProbability() {
+        return $('#probability').val();
+    }
+
 // Helpers
 
     function uiDisable(v) {
