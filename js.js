@@ -1,16 +1,42 @@
 $(function() {
 
+// State variables
+
+    PAUSE = false;
+
 // Event handlers
 
     $('#start').click(function(){
-        //
-    });
+        uiDisable(true);
+        disable('start', true);
+        disable('pause', false);
+        disable('reset', false);
 
-    $('#reset').click(function(){
+        if (PAUSE) {
+            // resume
+            PAUSE = false;
+        } else {
+            // start from the beginning
+        }
+
         //
     });
 
     $('#pause').click(function(){
+        uiDisable(true);
+        disable('start', false);
+        disable('pause', true);
+        disable('reset', false);
+
+        //
+    });
+
+    $('#reset').click(function(){
+        uiDisable(false);
+        disable('start', false);
+        disable('pause', true);
+        disable('reset', false);
+
         //
     });
 
@@ -26,6 +52,17 @@ $(function() {
 
     function getLength() {
         return $('#people').val();
+    }
+
+// Helpers
+
+    function uiDisable(v) {
+        $('#break, #people').prop('readonly', v);
+        $('#antagonize, #nothing').prop('disabled', v);
+    }
+
+    function disable(name, v) {
+        $('#' + name).prop('disabled', v);
     }
 
 // Debug info
