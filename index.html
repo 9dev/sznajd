@@ -2,9 +2,34 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>The Sznajd model</title>
+	<title>The Sznajd model (1D)</title>
+	<link rel="stylesheet" type="text/css" href="css.css">
 </head>
 <body>
-	//
+    <h1>The Sznajd model (1D)</h1>
+    <p>There are two possible opinions - <span class="yes">YES</span> and <span class="no">NO</span>.</p>
+
+    <p>
+        <input type="submit" value="START" id="start">
+        <input type="submit" value="RESET" id="reset">
+        <input type="submit" value="PAUSE" id="pause" disabled="disabled">
+    </p>
+    <p>
+        When there is a conflict (two different opinions):<br>
+        <input type="radio" name="diff" id="antagonize" value="1"><label for="antagonize">Antagonize</label><br>
+        <input type="radio" name="diff" id="nothing" value="0" checked><label for="nothing">Do nothing</label>
+    </p>
+	<p><input type="number" value="100" id="break" min="10"> Break between iterations [ms]</p>
+	<p><input type="number" value="100" id="people" min="1"> Number of people in a simulation</p>
+
+    <h2>Preview</h2>
+    <div id="preview"></div>
+
+    <h2>Density of YES</h2>
+    <div id="chart"></div>
+
+	<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+	<script type="text/javascript" src="jquery.canvasjs.min.js"></script>
+	<script type="text/javascript" src="js.js"></script>
 </body>
 </html>
