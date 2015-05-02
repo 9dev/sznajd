@@ -196,4 +196,11 @@ $(function() {
         initChart();
     }
 
+// Startup
+
+    uiDisable(false);
+    disable('start', false);
+    disable('pause', true);
+    disable('reset', false);
+
 });
