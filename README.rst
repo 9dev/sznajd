@@ -3,7 +3,7 @@ The Sznajd model (1D)
 
 *United we Stand, Divided we Fall*
 
-Implementation of a `Sznajd model <http://en.wikipedia.org/wiki/Sznajd_model>`_.
+Implementation of the `Sznajd model <http://en.wikipedia.org/wiki/Sznajd_model>`_.
 
 Demo
 ====
